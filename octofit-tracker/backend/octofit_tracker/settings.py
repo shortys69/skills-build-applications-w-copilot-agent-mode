@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@v$q+fo*xt4x!+em^vt&-m^xi)pbr6!#pw65(3_397*6w_hib)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0', '.app.github.dev']
 
 
 # Application definition
@@ -87,8 +87,6 @@ DATABASES = {
             'port': 27017,
             'username': '',
             'password': '',
-            'authSource': '',
-            'authMechanism': '',
         }
     }
 }
@@ -133,6 +131,8 @@ STATIC_URL = 'static/'
 
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = ['https://*.app.github.dev']
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = ['*']
 CORS_ALLOW_METHODS = ['*']
