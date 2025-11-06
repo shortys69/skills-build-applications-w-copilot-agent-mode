@@ -10,7 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+# Get Codespace name from environment variable
+CODESPACE_NAME = os.environ.get('CODESPACE_NAME', '')
+if CODESPACE_NAME:
+    BASE_URL = f"https://{CODESPACE_NAME}-8000.app.github.dev"
+else:
+    BASE_URL = "http://localhost:8000"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
