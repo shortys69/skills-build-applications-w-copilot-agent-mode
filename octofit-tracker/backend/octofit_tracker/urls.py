@@ -33,17 +33,17 @@ router.scheme = 'https' if CODESPACE_NAME else 'http'
 
 # Set the router's base URL
 router.root_view_name = 'api-root'
-router.urls[0].pattern._route = f"{API_URL}/"
+router.urls[0].pattern._route = "api/"
 
 # Register viewsets
-router.register(r'users', UserViewSet)
-router.register(r'teams', TeamViewSet)
-router.register(r'activities', ActivityViewSet)
-router.register(r'workouts', WorkoutViewSet)
-router.register(r'leaderboard', LeaderboardViewSet)
+router.register('users', UserViewSet)
+router.register('teams', TeamViewSet)
+router.register('activities', ActivityViewSet)
+router.register('workouts', WorkoutViewSet)
+router.register('leaderboard', LeaderboardViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
     path('', api_root, name='api_root'),
+    path('api/', include(router.urls)),
 ]
