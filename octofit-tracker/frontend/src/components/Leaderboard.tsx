@@ -24,25 +24,44 @@ const Leaderboard = () => {
   }, [apiEndpoint]);
 
   return (
-    <div className="container mt-4">
-      <h2>Leaderboard</h2>
-      <div className="table-responsive">
-        <table className="table table-striped">
+    <div className="container">
+      <h2 className="component-header">Leaderboard</h2>
+      <div className="table-container">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th>Rank</th>
               <th>Name</th>
               <th>Score</th>
               <th>Team</th>
+              <th>Progress</th>
             </tr>
           </thead>
           <tbody>
             {leaderboard.map((entry: any, index: number) => (
               <tr key={entry.id}>
-                <td>{index + 1}</td>
-                <td>{entry.user_name}</td>
-                <td>{entry.score}</td>
+                <td>
+                  <span className="badge bg-primary">{index + 1}</span>
+                </td>
+                <td className="fw-bold">{entry.user_name}</td>
+                <td>
+                  <span className="badge bg-success">{entry.score} pts</span>
+                </td>
                 <td>{entry.team_name}</td>
+                <td>
+                  <div className="progress" style={{ height: '20px' }}>
+                    <div
+                      className="progress-bar"
+                      role="progressbar"
+                      style={{ width: `${Math.min(entry.score/10, 100)}%` }}
+                      aria-valuenow={entry.score}
+                      aria-valuemin={0}
+                      aria-valuemax={1000}
+                    >
+                      {entry.score}
+                    </div>
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>

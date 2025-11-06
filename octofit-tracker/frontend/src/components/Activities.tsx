@@ -24,16 +24,32 @@ const Activities = () => {
   }, [apiEndpoint]);
 
   return (
-    <div className="container mt-4">
-      <h2>Activities</h2>
-      <div className="list-group">
-        {activities.map((activity: any) => (
-          <div key={activity.id} className="list-group-item">
-            <h5 className="mb-1">{activity.name}</h5>
-            <p className="mb-1">{activity.description}</p>
-            <small>Duration: {activity.duration} minutes</small>
-          </div>
-        ))}
+    <div className="container">
+      <h2 className="component-header">Activities</h2>
+      <div className="table-container">
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th>Activity</th>
+              <th>Description</th>
+              <th>Duration</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {activities.map((activity: any) => (
+              <tr key={activity.id}>
+                <td className="fw-bold">{activity.name}</td>
+                <td>{activity.description}</td>
+                <td>{activity.duration} minutes</td>
+                <td>
+                  <button className="btn btn-sm btn-primary me-2">Edit</button>
+                  <button className="btn btn-sm btn-danger">Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

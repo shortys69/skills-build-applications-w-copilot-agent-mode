@@ -24,16 +24,39 @@ const Teams = () => {
   }, [apiEndpoint]);
 
   return (
-    <div className="container mt-4">
-      <h2>Teams</h2>
+    <div className="container">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="component-header mb-0">Teams</h2>
+        <button className="btn btn-primary">
+          <i className="bi bi-plus-circle me-2"></i>
+          New Team
+        </button>
+      </div>
       <div className="row">
         {teams.map((team: any) => (
           <div key={team.id} className="col-md-4 mb-4">
-            <div className="card">
+            <div className="card h-100">
+              <div className="card-header">
+                <div className="d-flex justify-content-between align-items-center">
+                  <h5 className="card-title mb-0">{team.name}</h5>
+                  <span className="badge bg-info">{team.member_count} members</span>
+                </div>
+              </div>
               <div className="card-body">
-                <h5 className="card-title">{team.name}</h5>
                 <p className="card-text">{team.description}</p>
-                <small className="text-muted">Members: {team.member_count}</small>
+                <div className="d-flex justify-content-between align-items-center">
+                  <button className="btn btn-sm btn-outline-primary">
+                    View Members
+                  </button>
+                  <div>
+                    <button className="btn btn-sm btn-outline-secondary me-2">
+                      Edit
+                    </button>
+                    <button className="btn btn-sm btn-outline-danger">
+                      Delete
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

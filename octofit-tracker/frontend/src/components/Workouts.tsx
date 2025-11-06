@@ -24,19 +24,69 @@ const Workouts = () => {
   }, [apiEndpoint]);
 
   return (
-    <div className="container mt-4">
-      <h2>Workouts</h2>
-      <div className="list-group">
+    <div className="container">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="component-header mb-0">Workouts</h2>
+        <button className="btn btn-primary">
+          <i className="bi bi-plus-circle me-2"></i>
+          Create Workout
+        </button>
+      </div>
+      <div className="row">
         {workouts.map((workout: any) => (
-          <div key={workout.id} className="list-group-item">
-            <h5 className="mb-1">{workout.name}</h5>
-            <p className="mb-1">{workout.description}</p>
-            <small>Difficulty: {workout.difficulty}</small>
+          <div key={workout.id} className="col-md-6 mb-4">
+            <div className="card h-100">
+              <div className="card-header">
+                <div className="d-flex justify-content-between align-items-center">
+                  <h5 className="card-title mb-0">{workout.name}</h5>
+                  <span className={`badge bg-${getDifficultyBadge(workout.difficulty)}`}>
+                    {workout.difficulty}
+                  </span>
+                </div>
+              </div>
+              <div className="card-body">
+                <p className="card-text">{workout.description}</p>
+                <div className="mt-3">
+                  <span className="badge bg-secondary me-2">Duration: {workout.duration} min</span>
+                  <span className="badge bg-info me-2">Calories: {workout.calories}</span>
+                </div>
+              </div>
+              <div className="card-footer bg-transparent">
+                <div className="d-flex justify-content-between align-items-center">
+                  <button className="btn btn-sm btn-success">
+                    <i className="bi bi-play-circle me-2"></i>
+                    Start Workout
+                  </button>
+                  <div>
+                    <button className="btn btn-sm btn-outline-secondary me-2">
+                      Edit
+                    </button>
+                    <button className="btn btn-sm btn-outline-danger">
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         ))}
       </div>
     </div>
   );
+};
+
+// Helper function for difficulty badge colors
+const getDifficultyBadge = (difficulty: string) => {
+  switch (difficulty.toLowerCase()) {
+    case 'beginner':
+      return 'success';
+    case 'intermediate':
+      return 'warning';
+    case 'advanced':
+      return 'danger';
+    default:
+      return 'secondary';
+  }
 };
 
 export default Workouts;

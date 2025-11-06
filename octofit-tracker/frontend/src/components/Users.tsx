@@ -24,20 +24,55 @@ const Users = () => {
   }, [apiEndpoint]);
 
   return (
-    <div className="container mt-4">
-      <h2>Users</h2>
-      <div className="row">
-        {users.map((user: any) => (
-          <div key={user.id} className="col-md-4 mb-4">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">{user.username}</h5>
-                <p className="card-text">Email: {user.email}</p>
-                <p className="card-text">Team: {user.team_name}</p>
-              </div>
-            </div>
-          </div>
-        ))}
+    <div className="container">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="component-header mb-0">Users</h2>
+        <button className="btn btn-primary">
+          <i className="bi bi-person-plus me-2"></i>
+          Add User
+        </button>
+      </div>
+      <div className="table-container">
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Team</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user: any) => (
+              <tr key={user.id}>
+                <td>
+                  <div className="d-flex align-items-center">
+                    <div className="rounded-circle bg-light p-2 me-2">
+                      <i className="bi bi-person"></i>
+                    </div>
+                    <span className="fw-bold">{user.username}</span>
+                  </div>
+                </td>
+                <td>{user.email}</td>
+                <td>
+                  <span className="badge bg-info">{user.team_name}</span>
+                </td>
+                <td>
+                  <span className="badge bg-success">Active</span>
+                </td>
+                <td>
+                  <button className="btn btn-sm btn-outline-primary me-2">
+                    Edit
+                  </button>
+                  <button className="btn btn-sm btn-outline-danger">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
